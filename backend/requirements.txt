@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+supabase
+httpx
+python-dotenv
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+plotly
+apscheduler
+instaloader
