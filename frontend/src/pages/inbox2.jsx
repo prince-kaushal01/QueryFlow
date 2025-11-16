@@ -19,7 +19,7 @@ export default function InboxPage() {
   // ============================
   async function loadAnalytics() {
     try {
-      const res = await fetch("http://localhost:8000/analytics/summary");
+      const res = await fetch("https://queryflow-xzpm.onrender.com/analytics/summary");
       const data = await res.json();
       setAnalytics(data);
     } catch (err) {
@@ -55,6 +55,7 @@ export default function InboxPage() {
     let mounted = true;
 
     // First: Load backend analytics
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadAnalytics();
 
     // Then: Load Supabase messages
@@ -75,7 +76,8 @@ export default function InboxPage() {
 
     return () => {
       mounted = false;
-      try { supabase.removeChannel(channel); } catch (e) {}
+      // eslint-disable-next-line no-unused-vars
+      try { supabase.removeChannel(channel); } catch (e) { /* empty */ }
     };
   }, []);
 

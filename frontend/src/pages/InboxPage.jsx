@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // src/pages/InboxPage.jsx
 import React, { useEffect, useState } from "react";
 import TopStats from "../components/quary/TopStats";
@@ -17,7 +18,7 @@ export default function InboxPage({ onSwitchView }) {   // CORRECT {
   // ============================
   async function loadBackend() {
     try {
-      const res = await fetch("http://localhost:8000/api/queries/summary");
+      const res = await fetch("https://queryflow-xzpm.onrender.com/api/queries/summary");
       const data = await res.json();
 
       console.log("BACKEND RESPONSE => ", data);
@@ -43,6 +44,7 @@ export default function InboxPage({ onSwitchView }) {   // CORRECT {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadBackend();
   }, []);
 
@@ -64,7 +66,7 @@ export default function InboxPage({ onSwitchView }) {   // CORRECT {
   // ============================
   async function handleUpdateStatus(id, status) {
     try {
-      const res = await fetch("http://localhost:8000/api/queries/update-status", {
+      const res = await fetch("https://queryflow-xzpm.onrender.com/api/queries/update-status", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, status }),
@@ -92,7 +94,7 @@ export default function InboxPage({ onSwitchView }) {   // CORRECT {
     if (!replyText.trim()) return;
 
     try {
-      const res = await fetch("http://localhost:8000/api/queries/send-reply", {
+      const res = await fetch("https://queryflow-xzpm.onrender.com/api/queries/send-reply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -135,6 +137,7 @@ export default function InboxPage({ onSwitchView }) {   // CORRECT {
         <div>
           <QueryDetail
             message={selected}
+            // eslint-disable-next-line no-undef
             onAssign={(id,team) => handleAssign(id, team)}
             onUpdateStatus={(id,status) => handleUpdateStatus(id,status)}
             onSendReply={(id, text, resolve) => handleSendReply(id, text, resolve)}

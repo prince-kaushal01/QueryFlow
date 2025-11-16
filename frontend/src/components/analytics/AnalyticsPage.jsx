@@ -14,7 +14,7 @@ export default function AnalyticsPage({ onSwitchView }) {
 
   async function loadAnalytics() {
     try {
-      const res = await fetch("http://localhost:8000/api/analytics/summary");
+      const res = await fetch("https://queryflow-xzpm.onrender.com/api/analytics/summary");
       const data = await res.json();
       setAnalytics(data);
       setLoading(false);
@@ -25,6 +25,7 @@ export default function AnalyticsPage({ onSwitchView }) {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadAnalytics();
   }, []);
 

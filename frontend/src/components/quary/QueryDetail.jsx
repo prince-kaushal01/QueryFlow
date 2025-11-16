@@ -13,7 +13,7 @@ export default function QueryDetail({ message, onUpdateStatus, onSendReply }) {
       if (!message?.id) return;
 
       try {
-        const res = await fetch(`http://localhost:8000/api/queries/${message.id}/full`);
+        const res = await fetch(`https://queryflow-xzpm.onrender.com/api/queries/${message.id}/full`);
         const data = await res.json();
 
         // Chat history = first message + all replies
@@ -23,6 +23,7 @@ export default function QueryDetail({ message, onUpdateStatus, onSendReply }) {
       }
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReplyText("");
     setResolveAfterReply(false);
     loadHistory();
@@ -44,7 +45,7 @@ export default function QueryDetail({ message, onUpdateStatus, onSendReply }) {
     await onSendReply(message.id, trimmed, resolveAfterReply);
 
     // Reload chat history from backend after sending reply
-    const res = await fetch(`http://localhost:8000/api/queries/${message.id}/full`);
+    const res = await fetch(`https://queryflow-xzpm.onrender.com/api/queries/${message.id}/full`);
     const data = await res.json();
 
     setHistory(data.history || []);
